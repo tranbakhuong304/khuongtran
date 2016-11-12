@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<head>
+    <!--This a calculator design-->
+    <style>
+        div {
+        max-width: 550px;
+        height: auto;
+        background-color: powderblue;
+        border-style: double;
+        border-width: thick;
+        padding:10px;
+        }
+    </style>
+</head>
+<body>
+    <!--This a calculator coding by AngularJS-->
+  <div ng-app="CalculatorApp" ng-controller="CalculatorController">
+   <h1> Let's calculate something by AngularJS </h1>
+   <p><input type="number" ng-model="a" placeholder="Enter first number"></p>
+   <form>
+    <input type="radio" ng-model="operator" value="+">+
+    <input type="radio" ng-model="operator" value="-">-
+    <input type="radio" ng-model="operator" value="*">*
+    <input type="radio" ng-model="operator" value="/">/
+    <input type="radio" ng-model="operator" value="^">^
+   </form>
+   <p><input type="number" ng-model="b" placeholder="Enter second number"></p>
+   <button ng-click="do()">Calculate</button>
+   <p>Your result: <input type="number" ng-model="c"></p>
+   <button ng-click="clear()"> Clear</button>
+  </div>
+
+<!--This script will be run when "Calculate" button or "Clear" button is clicked-->
+<script>
+    angular.module('CalculatorApp', [])
+        .controller('CalculatorController', function ($scope) {
+            $scope.do = function () {
+                if ($scope.operator == '+') {
+                    return $scope.c = $scope.a + $scope.b;
+                }
+                if ($scope.operator == '-') {
+                    return $scope.c = $scope.a - $scope.b;
+                }
+                if ($scope.operator == '*') {
+                    return $scope.c = $scope.a * $scope.b;
+                }
+                if ($scope.operator == '/') {
+                    return $scope.c = $scope.a / $scope.b;
+                }
+                if ($scope.operator == '^') {
+                    return $scope.c = Math.pow($scope.a, $scope.b);
+                }
+            };
+            $scope.clear = function () {
+                $scope.a = null;
+                $scope.b = null;
+                $scope.c = null;
+                $scope.operator = null;
+            }
+        });
+</script>
+
+ </body>
+</html>
